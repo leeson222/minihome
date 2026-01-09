@@ -184,8 +184,8 @@ export default function Diary() {
                         {displayName(e.author_email)}
                       </div>
                       {e.title ? <div style={{ marginTop: 4 }}>{e.title}</div> : null}
-                      <div style={{ marginTop: 6, whiteSpace: 'pre-wrap' }}>{e.content}</div>
-                      <div style={{ fontSize: 10, opacity: 0.6, marginTop: 6 }}>
+                      <div style={{ marginTop: 10, whiteSpace: 'pre-wrap' }}>{e.content}</div>
+                      <div style={{ fontSize: 10, opacity: 0.6, marginTop: 10 }}>
                         {new Date(e.created_at).toLocaleString('ko-KR')}
                       </div>
                     </div>
@@ -198,7 +198,7 @@ export default function Diary() {
                   </div>
 
                   {/* 댓글 */}
-                  <div style={{ marginTop: 10, borderTop: '1px dashed #000', paddingTop: 8 }}>
+                  <div style={{ marginTop: 15, borderTop: '1px dashed #000', paddingTop: 15 }}>
                     <div style={{ fontSize: 11, marginBottom: 6 }}>댓글</div>
 
                     <ul style={{ display: 'grid', gap: 6, marginBottom: 8 }}>

@@ -16,12 +16,16 @@
 }
 
 .userName {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   color: var(--main-color);
 }
 
 .diary-wrap ul {
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   background-color: #0093ff10;
+}
+
+.diary-wrap ul ul {
+  padding: 15px;
 }
