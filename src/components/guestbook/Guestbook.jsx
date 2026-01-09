@@ -47,21 +47,21 @@ export default function Guestbook() {
   };
 
   const handleDelete = async (id) => {
-    // 감성: 한 번만 확인
     const ok = confirm('저를 삭제하시게요..?');
     if (!ok) return;
-
+  
     const { error } = await supabase
       .from('guestbook')
       .delete()
       .eq('id', id);
-
-    if (!error) {
-      // UI 즉시 반영
-      setEntries((prev) => prev.filter((e) => e.id !== id));
-    } else {
-      alert('삭제 실패…');
+  
+    if (error) {
+      console.log('delete error:', error);
+      alert('삭제 실패..');
+      return;
     }
+  
+    await fetchEntries(); // ✅ DB 기준으로 다시 그리기
   };
 
   return (
