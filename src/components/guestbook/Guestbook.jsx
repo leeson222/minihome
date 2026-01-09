@@ -48,7 +48,7 @@ export default function Guestbook() {
 
   const handleDelete = async (id) => {
     // 감성: 한 번만 확인
-    const ok = confirm('이 글 지울 거야?');
+    const ok = confirm('저를 삭제하시게요..?');
     if (!ok) return;
 
     const { error } = await supabase
@@ -60,12 +60,15 @@ export default function Guestbook() {
       // UI 즉시 반영
       setEntries((prev) => prev.filter((e) => e.id !== id));
     } else {
-      alert('삭제 실패…(권한 없거나 네트워크 문제)');
+      alert('삭제 실패…');
     }
   };
 
   return (
     <div className="guestbook">
+      <div style={{ fontSize: 10, opacity: 0.6 }}>
+        myUserId: {String(myUserId)}
+      </div>
       <form className="guestbook-form" onSubmit={handleSubmit}>
         <input
           className="guestbook-input guestbook-name"
