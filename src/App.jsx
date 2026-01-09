@@ -13,6 +13,8 @@ import Video from './page/Video.jsx';
 import Guestbook from './components/guestbook/Guestbook.jsx';
 import Login from './page/Login.jsx'; // Login 컴포넌트 경로 맞춰줘
 
+import starBg from '../assets/images/star-bg.gif';
+
 export default function App() {
   // ✅ 로그인 세션
   const [session, setSession] = useState(null);
