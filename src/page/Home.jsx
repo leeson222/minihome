@@ -1,6 +1,6 @@
 import React from 'react';
 
-import WhatLoverSay from '../components/whatLoverSay/whatLoverSay';
+import WhatLoverSay from '../components/WhatLoverSay/WhatLoverSay.jsx';
 import miniroomImg from '../assets/images/miniroom-img.png';
 
 function Home() {
