@@ -72,5 +72,6 @@ button {
 }
 
 input:focus {
-	outline: 1px solid var(--main-color);
+	outline: none;
+	border: 1px solid var(--main-color);
 }
