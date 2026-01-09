@@ -145,10 +145,6 @@ export default function Diary() {
     <div className="content-block">
       <h2 className="content-title">다이어리</h2>
       <div className="diary-wrap">
-        <div style={{ fontSize: 10, opacity: 0.6, marginBottom: 8 }}>
-          로그인: {me?.email ? displayName(me.email) : '...'}
-        </div>
-
         {/* 글쓰기 */}
         <form onSubmit={handleCreateEntry} style={{ marginBottom: 16 }}>
           <input
@@ -181,10 +177,10 @@ export default function Diary() {
               const comments = commentsByEntry[e.id] ?? [];
 
               return (
-                <li key={e.id} style={{ border: '1px solid #000', padding: 10 }}>
+                <li key={e.id}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
                     <div>
-                      <div style={{ fontSize: 12 }}>
+                      <div className='userName' style={{ fontSize: 12 }}>
                         {displayName(e.author_email)}
                       </div>
                       {e.title ? <div style={{ marginTop: 4 }}>{e.title}</div> : null}

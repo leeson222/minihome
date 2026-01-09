@@ -6,3 +6,22 @@
   margin-top: auto;
   color: var(--main-color);
 }
+
+.diary-wrap {
+  overflow-y: scroll;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+  height: 100%;
+}
+
+.userName {
+  margin-bottom: 5px;
+  color: var(--main-color);
+}
+
+.diary-wrap ul {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #0093ff10;
+}

@@ -34,8 +34,10 @@
   gap: 25px;
   width: 80%;
   max-width: 944px;
+  min-width: 810px;
   height: 72%;
   max-height: 595px;
+  min-height: 540px;
   padding: 12px;
   border-radius: 10px;
   border: 30px solid #0093ff17;

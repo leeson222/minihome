@@ -70,3 +70,7 @@ button {
 	border-radius: 3px;
 	background-color: #0093ff14;
 }
+
+input:focus {
+	outline: 1px solid var(--main-color);
+}
