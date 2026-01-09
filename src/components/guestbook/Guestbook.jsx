@@ -130,7 +130,7 @@ export default function Guestbook() {
                   </div>
 
                   {isMine && (
-                    <Button variant="ghost" onClick={() => handleDelete(e.id)}>
+                    <Button variant="guest-del" onClick={() => handleDelete(e.id)}>
                       삭제
                     </Button>
                   )}

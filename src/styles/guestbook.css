@@ -5,3 +5,23 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
+.guestbook-item-top, .guestbook-item-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.guestbook-item {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px dashed var(--main-color);
+  background-color: #0093ff07;
+}
+.btn.btn-guest-del {
+  padding: 0;
+  border: 0;
+  background: 0;
+  width: auto;
+  color: var(--main-color);
+}
