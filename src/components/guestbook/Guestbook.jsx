@@ -47,7 +47,7 @@ export default function Guestbook() {
   };
 
   const handleDelete = async (id) => {
-    const ok = confirm('저를 삭제하시게요..?');
+    const ok = confirm('이 글 지울 거야?');
     if (!ok) return;
   
     const { error } = await supabase
@@ -56,12 +56,12 @@ export default function Guestbook() {
       .eq('id', id);
   
     if (error) {
-      console.log('delete error:', error);
-      alert('삭제 실패..');
+      console.log('DELETE ERROR:', error);
+      alert(`삭제 실패: ${error.message}`);
       return;
     }
   
-    await fetchEntries(); // ✅ DB 기준으로 다시 그리기
+    await fetchEntries();
   };
 
   return (
