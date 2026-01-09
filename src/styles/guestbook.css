@@ -1,3 +1,21 @@
+.content-block {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.guestbook {
+  overflow-y: scroll;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+  height: 100%;
+}
+
+.guestbook-item + .guestbook-item {
+  margin-top: 10px;
+}
+
 .guestbook-form {
   display: flex;
   flex-direction: column;
@@ -8,6 +26,7 @@
 
 .guestbook-item-top, .guestbook-item-left {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
 }
@@ -15,7 +34,7 @@
 .guestbook-item {
   padding: 10px;
   border-radius: 10px;
-  border: 1px dashed var(--main-color);
+  border: 1px dashed #0093ff29;
   background-color: #0093ff07;
 }
 .btn.btn-guest-del {

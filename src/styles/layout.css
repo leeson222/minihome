@@ -13,13 +13,13 @@
 }
 
 .btn:disabled {
-  opacity: 0.4;
+  opacity: 0.7;
   cursor: not-allowed;
 }
 
 /* 타입별 */
 .btn-primary {
-  background: #ffe6ea;
+  background: #0093ff07;
 }
 .right-menu button + button {
   margin-top: 5px;

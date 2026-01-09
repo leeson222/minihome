@@ -83,9 +83,6 @@ export default function Guestbook() {
 
   return (
     <div className="guestbook">
-      <div style={{ fontSize: 10, opacity: 0.6 }}>
-        myUserId: {String(myUserId)}
-      </div>
       <form className="guestbook-form" onSubmit={handleSubmit}>
         <input
           className="guestbook-input guestbook-name"
@@ -123,7 +120,7 @@ export default function Guestbook() {
               <li key={e.id} className="guestbook-item">
                 <div className="guestbook-item-top">
                   <div className="guestbook-item-left">
-                    <span className="guestbook-item-name">{e.name}</span>
+                    <span className="guestbook-item-name">&lt;{e.name}&gt;</span>
                     <span className="guestbook-item-date">
                       {new Date(e.created_at).toLocaleString('ko-KR')}
                     </span>
