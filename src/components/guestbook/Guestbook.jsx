@@ -120,7 +120,7 @@ export default function Guestbook() {
               <li key={e.id} className="guestbook-item">
                 <div className="guestbook-item-top">
                   <div className="guestbook-item-left">
-                    <span className="guestbook-item-name">&lt;{e.name}&gt;</span>
+                    <span className="guestbook-item-name"><span className='bracket'>&lt;</span>{e.name}<span className='bracket'>&gt;</span></span>
                     <span className="guestbook-item-date">
                       {new Date(e.created_at).toLocaleString('ko-KR')}
                     </span>

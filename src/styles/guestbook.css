@@ -44,3 +44,7 @@
   width: auto;
   color: var(--main-color);
 }
+
+.bracket {
+  color: #ccc;
+}
