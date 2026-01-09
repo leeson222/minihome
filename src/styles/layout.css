@@ -1,0 +1,187 @@
+.app-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* common */
+/* button */
+
+.btn:hover {
+  background: #f2f2f2;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 타입별 */
+.btn-primary {
+  background: #ffe6ea;
+}
+
+
+/* home */
+.mini-wrapper {
+  display: flex;
+  gap: 25px;
+  width: 80%;
+  height: 72%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 30px solid #0093ff17;
+}
+
+
+.center-column {
+  overflow-y: scroll;
+  flex-grow: 10;
+}
+.right-menu button {
+  display: block;
+  word-break: keep-all;
+}
+
+
+
+/* 자기소개 */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+  border-radius: 10px;
+  border-style: dashed;
+  border: 1px dashed #ccc;
+}
+
+.today-box {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 5px;
+}
+.today-box .today-top {
+  display: flex;
+  gap: 5px;
+}
+.today-box .today-top span:first-child {
+  color: var(--main-color);
+}
+
+.profile-photo {
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.btn.btn-ghost {
+  display: inline-block;
+  width: 45px;
+  margin-top: auto;
+}
+
+/* Home */
+.content-title {
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+  color: var(--main-color);
+  text-shadow: 1px 0 0 currentColor;
+}
+
+.news-wrap {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+}
+.news-wrap ul {
+  flex-grow: 2;
+}
+.news-column li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+}
+.news-column li + li {
+  border-top: 1px dashed #ccc;
+}
+
+.news-column li span:first-child {
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.news-column:nth-child(1) li span:first-child {
+  background-color: rgb(242, 96, 255);
+}
+.news-column:nth-child(2) li span:first-child {
+  background-color: var(--main-color);
+}
+.news-column:nth-child(3) li span:first-child {
+  background-color: rgb(255, 133, 96);
+}
+
+.news-column li span:nth-child(2) {
+  color: #666;
+}
+
+/* Miniroom */
+.miniroom-box {
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+}
+
+.lover-say {
+  font-size: 12px;
+}
+
+.lover-form {
+  margin-bottom: 8px;
+}
+
+.lover-row {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.lover-row input {
+  flex: 1;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+}
+
+.lover-row button {
+  padding: 2px 6px;
+  border: 1px solid #333;
+  background: #fff;
+  cursor: pointer;
+}
+
+.lover-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lover-list li {
+  line-height: 1.4;
+}
+
+.lover-relation {
+  color: #ff6a00;
+}
+
+.lover-name {
+  color: #333;
+}
+
+.lover-message {
+  color: #000;
+}
