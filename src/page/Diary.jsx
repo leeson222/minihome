@@ -195,7 +195,7 @@ export default function Diary() {
                   </div>
 
                   {isMine && (
-                    <Button variant="ghost" onClick={() => handleDeleteEntry(e.id)}>
+                    <Button variant="guest-del2" onClick={() => handleDeleteEntry(e.id)}>
                       삭제
                     </Button>
                   )}
@@ -218,7 +218,7 @@ export default function Diary() {
                           </div>
 
                           {isMyComment && (
-                            <Button variant="ghost" onClick={() => handleDeleteComment(c.id, e.id)}>
+                            <Button variant="guest-del2" onClick={() => handleDeleteComment(c.id, e.id)}>
                               삭제
                             </Button>
                           )}
