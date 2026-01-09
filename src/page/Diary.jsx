@@ -144,109 +144,110 @@ export default function Diary() {
   return (
     <div className="content-block">
       <h2 className="content-title">다이어리</h2>
+      <div className="diary-wrap">
+        <div style={{ fontSize: 10, opacity: 0.6, marginBottom: 8 }}>
+          로그인: {me?.email ? displayName(me.email) : '...'}
+        </div>
 
-      <div style={{ fontSize: 10, opacity: 0.6, marginBottom: 8 }}>
-        로그인: {me?.email ? displayName(me.email) : '...'}
+        {/* 글쓰기 */}
+        <form onSubmit={handleCreateEntry} style={{ marginBottom: 16 }}>
+          <input
+            placeholder="제목(선택)"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            maxLength={50}
+            style={{ width: '100%', marginBottom: 6 }}
+          />
+          <textarea
+            placeholder="오늘의 일기…"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            rows={5}
+            maxLength={2000}
+            style={{ width: '100%', marginBottom: 6 }}
+          />
+          <Button type="submit" variant="primary" disabled={!content.trim()}>
+            저장
+          </Button>
+        </form>
+
+        {/* 글 목록 */}
+        {loading ? (
+          <div style={{ padding: 8 }}>불러오는 중…</div>
+        ) : (
+          <ul style={{ display: 'grid', gap: 12 }}>
+            {entries.map((e) => {
+              const isMine = me?.id && e.user_id === me.id;
+              const comments = commentsByEntry[e.id] ?? [];
+
+              return (
+                <li key={e.id} style={{ border: '1px solid #000', padding: 10 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+                    <div>
+                      <div style={{ fontSize: 12 }}>
+                        {displayName(e.author_email)}
+                      </div>
+                      {e.title ? <div style={{ marginTop: 4 }}>{e.title}</div> : null}
+                      <div style={{ marginTop: 6, whiteSpace: 'pre-wrap' }}>{e.content}</div>
+                      <div style={{ fontSize: 10, opacity: 0.6, marginTop: 6 }}>
+                        {new Date(e.created_at).toLocaleString('ko-KR')}
+                      </div>
+                    </div>
+
+                    {isMine && (
+                      <Button variant="guest-del2" onClick={() => handleDeleteEntry(e.id)}>
+                        삭제
+                      </Button>
+                    )}
+                  </div>
+
+                  {/* 댓글 */}
+                  <div style={{ marginTop: 10, borderTop: '1px dashed #000', paddingTop: 8 }}>
+                    <div style={{ fontSize: 11, marginBottom: 6 }}>댓글</div>
+
+                    <ul style={{ display: 'grid', gap: 6, marginBottom: 8 }}>
+                      {comments.map((c) => {
+                        const isMyComment = me?.id && c.user_id === me.id;
+                        return (
+                          <li key={c.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+                            <div>
+                              <span style={{ opacity: 0.8 }}>
+                                {displayName(c.author_email)}
+                              </span>{' '}
+                              {c.content}
+                            </div>
+
+                            {isMyComment && (
+                              <Button variant="guest-del2" onClick={() => handleDeleteComment(c.id, e.id)}>
+                                삭제
+                              </Button>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+
+                    <div style={{ display: 'flex', gap: 6 }}>
+                      <input
+                        placeholder="댓글 달기…"
+                        value={commentDraft[e.id] ?? ''}
+                        onChange={(ev) =>
+                          setCommentDraft((prev) => ({ ...prev, [e.id]: ev.target.value }))
+                        }
+                        style={{ flex: 1 }}
+                        maxLength={200}
+                      />
+                      <Button type="button" variant="primary" onClick={() => handleAddComment(e.id)}>
+                        등록
+                      </Button>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
-
-      {/* 글쓰기 */}
-      <form onSubmit={handleCreateEntry} style={{ marginBottom: 16 }}>
-        <input
-          placeholder="제목(선택)"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          maxLength={50}
-          style={{ width: '100%', marginBottom: 6 }}
-        />
-        <textarea
-          placeholder="오늘의 일기…"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          rows={5}
-          maxLength={2000}
-          style={{ width: '100%', marginBottom: 6 }}
-        />
-        <Button type="submit" variant="primary" disabled={!content.trim()}>
-          저장
-        </Button>
-      </form>
-
-      {/* 글 목록 */}
-      {loading ? (
-        <div style={{ padding: 8 }}>불러오는 중…</div>
-      ) : (
-        <ul style={{ display: 'grid', gap: 12 }}>
-          {entries.map((e) => {
-            const isMine = me?.id && e.user_id === me.id;
-            const comments = commentsByEntry[e.id] ?? [];
-
-            return (
-              <li key={e.id} style={{ border: '1px solid #000', padding: 10 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
-                  <div>
-                    <div style={{ fontSize: 12 }}>
-                      &lt;{displayName(e.author_email)}&gt;
-                    </div>
-                    {e.title ? <div style={{ marginTop: 4 }}>{e.title}</div> : null}
-                    <div style={{ marginTop: 6, whiteSpace: 'pre-wrap' }}>{e.content}</div>
-                    <div style={{ fontSize: 10, opacity: 0.6, marginTop: 6 }}>
-                      {new Date(e.created_at).toLocaleString('ko-KR')}
-                    </div>
-                  </div>
-
-                  {isMine && (
-                    <Button variant="guest-del2" onClick={() => handleDeleteEntry(e.id)}>
-                      삭제
-                    </Button>
-                  )}
-                </div>
-
-                {/* 댓글 */}
-                <div style={{ marginTop: 10, borderTop: '1px dashed #000', paddingTop: 8 }}>
-                  <div style={{ fontSize: 11, marginBottom: 6 }}>댓글</div>
-
-                  <ul style={{ display: 'grid', gap: 6, marginBottom: 8 }}>
-                    {comments.map((c) => {
-                      const isMyComment = me?.id && c.user_id === me.id;
-                      return (
-                        <li key={c.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
-                          <div>
-                            <span style={{ opacity: 0.8 }}>
-                              &lt;{displayName(c.author_email)}&gt;
-                            </span>{' '}
-                            {c.content}
-                          </div>
-
-                          {isMyComment && (
-                            <Button variant="guest-del2" onClick={() => handleDeleteComment(c.id, e.id)}>
-                              삭제
-                            </Button>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
-
-                  <div style={{ display: 'flex', gap: 6 }}>
-                    <input
-                      placeholder="댓글 달기…"
-                      value={commentDraft[e.id] ?? ''}
-                      onChange={(ev) =>
-                        setCommentDraft((prev) => ({ ...prev, [e.id]: ev.target.value }))
-                      }
-                      style={{ flex: 1 }}
-                      maxLength={200}
-                    />
-                    <Button type="button" variant="primary" onClick={() => handleAddComment(e.id)}>
-                      등록
-                    </Button>
-                  </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      )}
     </div>
   );
 }
