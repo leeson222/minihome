@@ -20,7 +20,7 @@
   color: var(--main-color);
 }
 
-.diary-wrap ul {
+.diary-wrap > ul > li {
   padding: 20px;
   border-radius: 10px;
   background-color: #0093ff10;
@@ -28,4 +28,6 @@
 
 .diary-wrap ul ul {
   padding: 15px;
+  border-radius: 10px;
+  background-color: #0093ff10;
 }
