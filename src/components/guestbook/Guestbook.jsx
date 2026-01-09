@@ -1,18 +1,20 @@
 // src/components/guestbook/Guestbook.jsx
 import { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
+import Button from '../ui/Button';
 
 export default function Guestbook() {
   const [entries, setEntries] = useState([]);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
+  const [myUserId, setMyUserId] = useState(null);
 
   const fetchEntries = async () => {
     setLoading(true);
     const { data, error } = await supabase
       .from('guestbook')
-      .select('id, name, message, created_at')
+      .select('id, user_id, name, message, created_at')
       .order('created_at', { ascending: false });
 
     if (!error) setEntries(data ?? []);
@@ -20,6 +22,11 @@ export default function Guestbook() {
   };
 
   useEffect(() => {
+    // 내 uid 가져오기
+    supabase.auth.getUser().then(({ data }) => {
+      setMyUserId(data?.user?.id ?? null);
+    });
+
     fetchEntries();
   }, []);
 
@@ -35,7 +42,25 @@ export default function Guestbook() {
 
     if (!error) {
       setMessage('');
-      await fetchEntries(); // 새로고침
+      await fetchEntries();
+    }
+  };
+
+  const handleDelete = async (id) => {
+    // 감성: 한 번만 확인
+    const ok = confirm('이 글 지울 거야?');
+    if (!ok) return;
+
+    const { error } = await supabase
+      .from('guestbook')
+      .delete()
+      .eq('id', id);
+
+    if (!error) {
+      // UI 즉시 반영
+      setEntries((prev) => prev.filter((e) => e.id !== id));
+    } else {
+      alert('삭제 실패…(권한 없거나 네트워크 문제)');
     }
   };
 
@@ -51,32 +76,50 @@ export default function Guestbook() {
         />
         <textarea
           className="guestbook-input guestbook-message"
-          placeholder="각자의 여보에게 방명록을 남겨 주세요"
+          placeholder="각자의 여보에게 하고 싶은 말"
           value={message}
           rows={3}
           maxLength={200}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button type="submit" disabled={!name.trim() || !message.trim()}>
+
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={!name.trim() || !message.trim()}
+        >
           남기기
-        </button>
+        </Button>
       </form>
 
       {loading ? (
         <div style={{ padding: 8 }}>불러오는 중…</div>
       ) : (
         <ul className="guestbook-list">
-          {entries.map((e) => (
-            <li key={e.id} className="guestbook-item">
-              <div className="guestbook-item-top">
-                <span className="guestbook-item-name">{e.name}</span>
-                <span className="guestbook-item-date">
-                  {new Date(e.created_at).toLocaleString('ko-KR')}
-                </span>
-              </div>
-              <p className="guestbook-item-text">{e.message}</p>
-            </li>
-          ))}
+          {entries.map((e) => {
+            const isMine = myUserId && e.user_id === myUserId;
+
+            return (
+              <li key={e.id} className="guestbook-item">
+                <div className="guestbook-item-top">
+                  <div className="guestbook-item-left">
+                    <span className="guestbook-item-name">{e.name}</span>
+                    <span className="guestbook-item-date">
+                      {new Date(e.created_at).toLocaleString('ko-KR')}
+                    </span>
+                  </div>
+
+                  {isMine && (
+                    <Button variant="ghost" onClick={() => handleDelete(e.id)}>
+                      삭제
+                    </Button>
+                  )}
+                </div>
+
+                <p className="guestbook-item-text">{e.message}</p>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

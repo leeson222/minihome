@@ -21,6 +21,9 @@
 .btn-primary {
   background: #ffe6ea;
 }
+.right-menu button + button {
+  margin-top: 5px;
+}
 
 
 /* home */
