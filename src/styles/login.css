@@ -7,7 +7,7 @@
 .login-box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   gap: 25px;
   width: 80%;
@@ -21,6 +21,7 @@
   /* border: 30px solid #0093ff17; */
   background: url(../assets/images/login-box-img.png);
   background-size: cover;
+  padding-bottom: 70px;
 }
 .login-box form div {
   display: flex;
