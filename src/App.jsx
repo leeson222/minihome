@@ -1,5 +1,5 @@
 // src/App.jsx
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { supabase } from './lib/supabase'; // 경로 맞춰줘
 
 import LeftColumn from './components/layout/LeftColumn.jsx';
@@ -16,7 +16,11 @@ import Login from './page/Login.jsx'; // Login 컴포넌트 경로 맞춰줘
 import { audio } from "./lib/audioManager";
 
 
+
 export default function App() {
+
+  const bgmUnlockedRef = useRef(false);
+
   // ✅ 로그인 세션
   const [session, setSession] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
@@ -48,14 +52,27 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    // 로딩 끝나기 전엔 아무 것도 안 함(깜빡임 방지)
     if (authLoading) return;
   
-    if (!session) {
-      audio.playLoginBgm();
-    } else {
-      audio.playMainBgm();
-    }
+    // 이미 한 번 브금 재생 성공했으면 다시 안 함
+    if (bgmUnlockedRef.current) return;
+  
+    const unlockBgm = async () => {
+      bgmUnlockedRef.current = true;
+  
+      if (!session) {
+        await audio.playLoginBgm();
+      } else {
+        await audio.playMainBgm();
+      }
+    };
+  
+    // 👇 첫 사용자 클릭에서만 실행
+    window.addEventListener('pointerdown', unlockBgm, { once: true });
+  
+    return () => {
+      window.removeEventListener('pointerdown', unlockBgm);
+    };
   }, [authLoading, session]);
 
   // ✅ 로딩 중엔 깜빡임 방지
