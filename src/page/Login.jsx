@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 
+import { audio } from '../lib/audioManager';
+
 import '../styles/login.css'
 
 import loginLogo from '../assets/images/login-logo.png';
