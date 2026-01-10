@@ -93,7 +93,7 @@ export default function Guestbook() {
         />
         <textarea
           className="guestbook-input guestbook-message"
-          placeholder="각자의 여보에게 하고 싶은 말"
+          placeholder="리쿠 생일 축하해"
           value={message}
           rows={3}
           maxLength={200}

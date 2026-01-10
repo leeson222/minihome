@@ -116,7 +116,7 @@ export default function Diary() {
   };
 
   const handleDeleteEntry = async (entryId) => {
-    const ok = confirm('이 글 지울 거야? (댓글도 같이 삭제됨)');
+    const ok = confirm('이 글 지울 거야?');
     if (!ok) return;
 
     const { error } = await supabase.from('diary_entries').delete().eq('id', entryId);
@@ -155,7 +155,7 @@ export default function Diary() {
             style={{ width: '100%', marginBottom: 6 }}
           />
           <textarea
-            placeholder="오늘의 일기…"
+            placeholder="오늘의 일기.."
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={5}
