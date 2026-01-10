@@ -1,17 +1,28 @@
-// src/components/ui/Button.jsx
+import { audio } from "../../lib/audioManager";
+
 export default function Button({
   children,
   onClick,
-  type = 'button',
-  variant = 'default',
-  disabled = false,
+  type = "button",
+  disabled,
+  variant = "primary",
+  ...rest
 }) {
+  const handleClick = (e) => {
+    // disabled면 소리도 안 나게
+    if (disabled) return;
+
+    audio.click();          // ✅ 전역 효과음
+    onClick?.(e);           // 기존 onClick 실행
+  };
+
   return (
     <button
       type={type}
-      className={`btn btn-${variant}`}
-      onClick={onClick}
       disabled={disabled}
+      className={`btn btn-${variant}`}
+      onClick={handleClick}
+      {...rest}
     >
       {children}
     </button>

@@ -13,6 +13,8 @@ import Video from './page/Video.jsx';
 import Guestbook from './components/guestbook/Guestbook.jsx';
 import Login from './page/Login.jsx'; // Login 컴포넌트 경로 맞춰줘
 
+import { audio } from "./lib/audioManager";
+
 
 export default function App() {
   // ✅ 로그인 세션
@@ -35,6 +37,7 @@ export default function App() {
     const { data: subscriptionData } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setSession(session);
+        setAuthLoading(false);
       }
     );
 
@@ -43,6 +46,17 @@ export default function App() {
       subscriptionData?.subscription?.unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+    // 로딩 끝나기 전엔 아무 것도 안 함(깜빡임 방지)
+    if (authLoading) return;
+  
+    if (!session) {
+      audio.playLoginBgm();
+    } else {
+      audio.playMainBgm();
+    }
+  }, [authLoading, session]);
 
   // ✅ 로딩 중엔 깜빡임 방지
   if (authLoading) {

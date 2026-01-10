@@ -49,6 +49,11 @@
   overflow-y: scroll;
   flex-grow: 10;
 }
+.center-column:has( .diary-wrap),
+.center-column:has( .guestbook) {
+  overflow-y: unset;
+}
+
 .right-menu button {
   display: block;
   word-break: keep-all;

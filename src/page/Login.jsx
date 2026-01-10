@@ -24,26 +24,28 @@ export default function Login({ onLogin }) {
   };
 
   return (
-    <div className='login-wrap'>
-      <div className="login-box">
-        <img src={loginLogo} alt="" />
-        <form onSubmit={handleLogin}>
-          <div>
-            <input
-              placeholder="아이디"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="비밀번호"
-              value={pw}
-              onChange={(e) => setPw(e.target.value)}
-            />
-            <button type="submit">로그인</button>
-          </div>
-          {error && <p>{error}</p>}
-        </form>
+    <div onPointerDown={() => audio.playLoginBgm()}>
+      <div className='login-wrap'>
+        <div className="login-box">
+          <img src={loginLogo} alt="" />
+          <form onSubmit={handleLogin}>
+            <div>
+              <input
+                placeholder="아이디"
+                value={id}
+                onChange={(e) => setId(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="비밀번호"
+                value={pw}
+                onChange={(e) => setPw(e.target.value)}
+              />
+              <button type="submit">로그인</button>
+            </div>
+            {error && <p>{error}</p>}
+          </form>
+        </div>
       </div>
     </div>
   );
