@@ -19,6 +19,12 @@ import { audio } from "./lib/audioManager";
 
 export default function App() {
 
+  const unlockBgm = () => {
+    if (authLoading) return;
+    if (session) audio.ensureMainBgm();
+    else audio.ensureLoginBgm();
+  };
+
   const pendingTrackRef = useRef(null); // 'login' | 'main' | null
   const listenerAddedRef = useRef(false);
 
@@ -80,12 +86,12 @@ export default function App() {
         const track = pendingTrackRef.current;
         if (!track) return;
   
-        if (track === 'main') await audio.playMainBgm();
-        else await audio.playLoginBgm();
+        if (track === 'main') await audio.ensureMainBgm();
+        else await audio.ensureLoginBgm();
       };
   
-      window.addEventListener('pointerdown', unlockOnNextClick);
-      return () => window.removeEventListener('pointerdown', unlockOnNextClick);
+      window.addEventListener('click', unlockOnNextClick);
+      return () => window.removeEventListener('click', unlockOnNextClick);
     }
   }, [authLoading, session]);
 
@@ -96,7 +102,11 @@ export default function App() {
 
   // ✅ 로그인 안 했으면 로그인 화면만
   if (!session) {
-    return <Login />;
+    return (
+      <div onClick={unlockBgm}>
+        <Login />
+      </div>
+    );
   }
 
   // ✅ 로그인 했으면 기존 레이아웃 그대로
@@ -123,14 +133,12 @@ export default function App() {
   };
 
   return (
-    <div className="app-root">
-      <div className="mini-wrapper">
-        <LeftColumn />
-
-        <main className="center-column">{renderContent()}</main>
-
-        <RightMenu activeMenu={activeMenu} onChange={setActiveMenu} />
+      <div className="app-root" onClick={unlockBgm}>
+        <div className="mini-wrapper">
+          <LeftColumn />
+          <main className="center-column">{renderContent()}</main>
+          <RightMenu activeMenu={activeMenu} onChange={setActiveMenu} />
+        </div>
       </div>
-    </div>
-  );
+    );
 }

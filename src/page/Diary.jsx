@@ -184,7 +184,7 @@ export default function Diary() {
                         {displayName(e.author_email)}
                       </div>
                       {e.title ? <div style={{ marginTop: 4 }}>{e.title}</div> : null}
-                      <div style={{ marginTop: 10, whiteSpace: 'pre-wrap' }}>{e.content}</div>
+                      <div className='diary-text' style={{ marginTop: 10, whiteSpace: 'pre-wrap' }}>{e.content}</div>
                       <div style={{ fontSize: 10, opacity: 0.6, marginTop: 10 }}>
                         {new Date(e.created_at).toLocaleString('ko-KR')}
                       </div>

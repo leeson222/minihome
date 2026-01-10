@@ -35,3 +35,7 @@
 .diary-wrap ul ul span:first-child {
   color: var(--main-color);
 }
+
+.diary-text {
+  line-height: 120%;
+}

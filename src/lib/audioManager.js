@@ -67,4 +67,19 @@ export const audio = {
     clickSfx.currentTime = 0;
     clickSfx.play().catch(() => {});
   },
+
+  async ensureLoginBgm() {
+    this.init();
+    if (!loginBgm.paused) return;   // 이미 재생중이면 패스
+    this.stopMainBgm();             // 혹시 켜져있던 메인 정리
+    await safePlay(loginBgm);       // ✅ currentTime 안 건드림
+  },
+
+  async ensureMainBgm() {
+    this.init();
+    if (!mainBgm.paused) return;
+    this.stopLoginBgm();
+    await safePlay(mainBgm);        // ✅ currentTime 안 건드림
+  },
+  
 };

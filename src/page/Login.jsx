@@ -15,8 +15,6 @@ export default function Login({ onLogin }) {
   const [pw, setPw] = useState('');
   const [error, setError] = useState('');
 
-  const bgmStartedRef = useRef(false);
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
@@ -27,35 +25,27 @@ export default function Login({ onLogin }) {
     });
 
     if (error) setError('아이디 또는 비밀번호가 틀렸어');
-    else onLogin();
+    else onLogin?.();
   };
 
   return (
-    <div onPointerDown={() => {
-      if (bgmStartedRef.current) return;
-      bgmStartedRef.current = true;
-      audio.playLoginBgm();
-    }}>
-      <div className='login-wrap'>
-        <div className="login-box">
-          <form onSubmit={handleLogin}>
-            <div>
-              <input
-                placeholder="아이디"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-              />
-              <input
-                type="password"
-                placeholder="비밀번호"
-                value={pw}
-                onChange={(e) => setPw(e.target.value)}
-              />
-              <Button type="submit" className='btn'>로그인</Button>
-            </div>
-            {error && <p>{error}</p>}
-          </form>
-        </div>
+    <div className="login-wrap">
+      <div className="login-box">
+        <form onSubmit={handleLogin}>
+          <input
+            placeholder="아이디"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="비밀번호"
+            value={pw}
+            onChange={(e) => setPw(e.target.value)}
+          />
+          <Button type="submit">로그인</Button>
+          {error && <p>{error}</p>}
+        </form>
       </div>
     </div>
   );
