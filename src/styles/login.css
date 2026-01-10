@@ -18,7 +18,9 @@
   min-height: 540px;
   padding: 12px;
   border-radius: 10px;
-  border: 30px solid #0093ff17;
+  /* border: 30px solid #0093ff17; */
+  background: url(../assets/images/login-box-img.png);
+  background-size: cover;
 }
 .login-box form div {
   display: flex;
