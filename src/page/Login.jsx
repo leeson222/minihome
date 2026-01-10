@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRef } from "react";
 
 import { supabase } from '../lib/supabase';
 import { audio } from '../lib/audioManager';
@@ -14,6 +15,8 @@ export default function Login({ onLogin }) {
   const [pw, setPw] = useState('');
   const [error, setError] = useState('');
 
+  const bgmStartedRef = useRef(false);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
@@ -28,7 +31,11 @@ export default function Login({ onLogin }) {
   };
 
   return (
-    <div onPointerDown={() => audio.playLoginBgm()}>
+    <div onPointerDown={() => {
+      if (bgmStartedRef.current) return;
+      bgmStartedRef.current = true;
+      audio.playLoginBgm();
+    }}>
       <div className='login-wrap'>
         <div className="login-box">
           <img src={loginLogo} alt="" />
