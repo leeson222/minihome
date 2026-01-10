@@ -8,13 +8,30 @@
 }
 
 /* common */
+
+.center-column {
+  overflow-x: scroll;
+}
+.content-block {
+  min-width: 514px;
+}
+
+/* input, textarea */
+input, textarea {
+  border: 2px solid rgb(96 202 255);
+  border-radius: 4px;
+  padding: 5px;
+}
+
 /* button */
 
 .btn:hover {
   background: #f2f2f2;
 }
 .btn.is-active,
-.btn:active {
+.btn:active,
+.btn-primary:hover,
+.btn:hover {
   color: #fff;
   background-color: var(--main-color);
 }
@@ -28,6 +45,7 @@
 .btn-primary {
   background: #0093ff07;
 }
+
 .right-menu button + button {
   margin-top: 5px;
 }
@@ -204,4 +222,21 @@
 
 .lover-message {
   color: #000;
+}
+
+
+/* 프로필 */
+.profile-img-wrap {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+}
+.profile-img-wrap img {
+  width: 100%;
+}
+.profile-text {
+    line-height: 110%;
 }

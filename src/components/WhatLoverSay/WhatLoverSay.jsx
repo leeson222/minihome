@@ -42,11 +42,11 @@ export default function WhatLoverSay() {
     <div className="lover-say">
       <form className="lover-form" onSubmit={handleSubmit}>
         <div className="lover-row">
-          <input placeholder="일촌명" value={relation} onChange={(e) => setRelation(e.target.value)} />
-          <input placeholder="이름" value={name} onChange={(e) => setName(e.target.value)} />
+          <input placeholder="일촌명 뭐라고 적을 거야?" value={relation} onChange={(e) => setRelation(e.target.value)} />
+          <input placeholder="내 이름은 랑또 ♡" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="lover-row">
-          <input placeholder="한 줄" value={message} onChange={(e) => setMessage(e.target.value)} />
+          <input placeholder="하고 싶은 말 적어 줘 나는 사랑해" value={message} onChange={(e) => setMessage(e.target.value)} />
           <button type="submit">등록</button>
         </div>
       </form>

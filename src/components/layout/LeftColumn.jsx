@@ -12,7 +12,7 @@ function LeftColumn() {
       <div className="today-box">
         <div className="today-top">
           <span>Today</span>
-          <span>260128</span>
+          <span>260118</span>
         </div>
         <div className="today-top">
           <span>Total</span>
@@ -24,9 +24,12 @@ function LeftColumn() {
         <div className="profile-photo"><img src={introImg} alt="" /></div>
         <div className="profile-text">
           {/* 여기 자기소개 송이가 나중에 바꾸면 됨 */}
-          자기소개 자기소개 자기소개 자기소개<br />
-          자기소개 자기소개 자기소개 자기소개<br />
-          자기소개 자기소개 자기소개 자기소개
+          우己l 己l쿠 건드己l면<br />
+          누구든 신경 안 쓰ヱ<br />
+          죽øㅕ 버린 ⊂ト음<br />
+          ㅈΓ살ㅎŁ⊂ト..<br />
+          왜녀レF㈛면 己l쿠 없는 ㄴr는<br />
+          죽은 つㅓㄴr ㅁト찬ㄱrズlLI까..
         </div>
       </div>
       <Button

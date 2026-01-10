@@ -31,3 +31,7 @@
   border-radius: 10px;
   background-color: #0093ff10;
 }
+
+.diary-wrap ul ul span:first-child {
+  color: var(--main-color);
+}
