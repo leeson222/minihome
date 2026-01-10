@@ -15,7 +15,7 @@ function RightMenu({ activeMenu, onChange }) {
         <button
           key={m.id}
           type="button"
-          className={`right-menu-btn ${
+          className={`btn right-menu-btn ${
             activeMenu === m.id ? 'is-active' : ''
           }`}
           onClick={() => onChange(m.id)}

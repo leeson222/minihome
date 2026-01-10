@@ -43,7 +43,7 @@ export default function Login({ onLogin }) {
                 value={pw}
                 onChange={(e) => setPw(e.target.value)}
               />
-              <button type="submit">로그인</button>
+              <button type="submit" className='btn'>로그인</button>
             </div>
             {error && <p>{error}</p>}
           </form>
