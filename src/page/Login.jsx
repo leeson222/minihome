@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { supabase } from '../lib/supabase';
 
+import { supabase } from '../lib/supabase';
 import { audio } from '../lib/audioManager';
+
+import Button from '../ui/Button';
 
 import '../styles/login.css'
 
@@ -43,7 +45,7 @@ export default function Login({ onLogin }) {
                 value={pw}
                 onChange={(e) => setPw(e.target.value)}
               />
-              <button type="submit" className='btn'>로그인</button>
+              <Button type="submit" className='btn'>로그인</Button>
             </div>
             {error && <p>{error}</p>}
           </form>

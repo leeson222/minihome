@@ -32,23 +32,33 @@ export const audio = {
   async playLoginBgm() {
     this.init();
     this.stopMainBgm();
+  
+    // ✅ 항상 처음부터
+    loginBgm.currentTime = 0;
+  
     await safePlay(loginBgm);
   },
 
   async playMainBgm() {
     this.init();
     this.stopLoginBgm();
+  
+    // ✅ 항상 처음부터
+    mainBgm.currentTime = 0;
+  
     await safePlay(mainBgm);
   },
 
   stopLoginBgm() {
     if (!loginBgm) return;
     loginBgm.pause();
+    loginBgm.currentTime = 0; // ✅ 멈출 때도 초기화
   },
-
+  
   stopMainBgm() {
     if (!mainBgm) return;
     mainBgm.pause();
+    mainBgm.currentTime = 0; // ✅ 멈출 때도 초기화
   },
 
   click() {

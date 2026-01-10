@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Button from '../ui/Button';
+
 const MENUS = [
   { id: 'home', label: '홈' },
   { id: 'profile', label: '프로필' },
@@ -12,7 +14,7 @@ function RightMenu({ activeMenu, onChange }) {
   return (
     <nav className="right-menu">
       {MENUS.map((m) => (
-        <button
+        <Button
           key={m.id}
           type="button"
           className={`btn right-menu-btn ${
@@ -21,7 +23,7 @@ function RightMenu({ activeMenu, onChange }) {
           onClick={() => onChange(m.id)}
         >
           {m.label}
-        </button>
+        </Button>
       ))}
     </nav>
   );
