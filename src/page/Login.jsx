@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { audio } from '../lib/audioManager';
 
-import Button from '../ui/Button';
+import Button from '../components/ui/Button';
 
 import '../styles/login.css'
 
