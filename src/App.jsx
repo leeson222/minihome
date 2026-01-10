@@ -19,7 +19,8 @@ import { audio } from "./lib/audioManager";
 
 export default function App() {
 
-  const bgmUnlockedRef = useRef(false);
+  const pendingTrackRef = useRef(null); // 'login' | 'main' | null
+  const listenerAddedRef = useRef(false);
 
   // ✅ 로그인 세션
   const [session, setSession] = useState(null);
@@ -54,25 +55,38 @@ export default function App() {
   useEffect(() => {
     if (authLoading) return;
   
-    // 이미 한 번 브금 재생 성공했으면 다시 안 함
-    if (bgmUnlockedRef.current) return;
+    const desired = session ? 'main' : 'login';
   
-    const unlockBgm = async () => {
-      bgmUnlockedRef.current = true;
-  
-      if (!session) {
-        await audio.playLoginBgm();
-      } else {
+    const tryPlay = async () => {
+      // 원하는 트랙 즉시 시도
+      if (desired === 'main') {
         await audio.playMainBgm();
+      } else {
+        await audio.playLoginBgm();
       }
     };
   
-    // 👇 첫 사용자 클릭에서만 실행
-    window.addEventListener('pointerdown', unlockBgm, { once: true });
+    // 1) 일단 바로 시도 (자동재생 막히면 소리 안 날 수 있음)
+    tryPlay();
   
-    return () => {
-      window.removeEventListener('pointerdown', unlockBgm);
-    };
+    // 2) 혹시 자동재생이 막힌 경우 대비: 다음 사용자 클릭에서 "원하는 트랙"을 다시 틀기
+    //    (로그인/로그아웃으로 desired가 바뀌면 다음 클릭 때 바뀐 트랙으로 재생됨)
+    pendingTrackRef.current = desired;
+  
+    if (!listenerAddedRef.current) {
+      listenerAddedRef.current = true;
+  
+      const unlockOnNextClick = async () => {
+        const track = pendingTrackRef.current;
+        if (!track) return;
+  
+        if (track === 'main') await audio.playMainBgm();
+        else await audio.playLoginBgm();
+      };
+  
+      window.addEventListener('pointerdown', unlockOnNextClick);
+      return () => window.removeEventListener('pointerdown', unlockOnNextClick);
+    }
   }, [authLoading, session]);
 
   // ✅ 로딩 중엔 깜빡임 방지
