@@ -38,7 +38,6 @@ export default function Login({ onLogin }) {
     }}>
       <div className='login-wrap'>
         <div className="login-box">
-          <img src={loginLogo} alt="" />
           <form onSubmit={handleLogin}>
             <div>
               <input
