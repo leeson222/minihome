@@ -6,7 +6,7 @@ const MENUS = [
   { id: 'home', label: '홈' },
   { id: 'profile', label: '프로필' },
   { id: 'diary', label: '다이어리' },
-  { id: 'video', label: '동영상' },
+  { id: 'video', label: '사진첩' },
   { id: 'guestbook', label: '방명록' },
 ];
 
