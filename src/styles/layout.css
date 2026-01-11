@@ -18,9 +18,13 @@
 
 /* input, textarea */
 input, textarea {
-  border: 2px solid rgb(96 202 255);
+  border: 2px solid #60caff;
   border-radius: 4px;
   padding: 5px;
+}
+input[type="file"] {
+  border: none;
+  padding: 0;
 }
 
 /* button */
