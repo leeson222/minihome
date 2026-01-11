@@ -59,7 +59,7 @@ input[type="file"] {
 /* home */
 .mini-wrapper {
   display: flex;
-  gap: 25px;
+  gap: 15px;
   width: 80%;
   max-width: 944px;
   min-width: 810px;
@@ -69,6 +69,8 @@ input[type="file"] {
   padding: 12px;
   border-radius: 10px;
   border: 30px solid #0093ff17;
+  border-top: 20px solid #0093ff17;
+  border-bottom: 20px solid #0093ff17;
   background-color: #fff;
 }
 
@@ -121,7 +123,7 @@ input[type="file"] {
 
 .btn.btn-ghost {
   display: inline-block;
-  width: 45px;
+  width: auto;
   margin-top: auto;
 }
 
@@ -185,12 +187,15 @@ input[type="file"] {
 }
 
 .lover-form {
+  display: flex;
+  gap: 5px;
   margin-bottom: 8px;
 }
 
 .lover-row {
   display: flex;
   gap: 4px;
+  width: 100%;
   margin-bottom: 4px;
 }
 

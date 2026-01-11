@@ -142,12 +142,12 @@ export default function Video() {
     e.preventDefault();
 
     if (!user) {
-      alert("로그인한 사용자만 사진을 올릴 수 있어.");
+      alert("너 누구야? 로그인한 사람만 들어올 수 있는데?");
       return;
     }
 
     if (!imageFile) {
-      alert("사진을 먼저 선택해줘!");
+      alert("리쿠 바보 사진 먼저 골라야지");
       return;
     }
 
@@ -165,7 +165,7 @@ export default function Video() {
 
       if (uploadError) {
         console.error("upload error:", uploadError);
-        alert("이미지 업로드 중 오류가 발생했어.");
+        alert("업로드 오류 발생");
         setUploading(false);
         return;
       }
@@ -185,7 +185,7 @@ export default function Video() {
 
       if (insertError) {
         console.error("insert post error:", insertError);
-        alert("게시글 저장 중 오류가 발생했어.");
+        alert("게시글 저장 중 오류가 발생했어");
         setUploading(false);
         return;
       }
@@ -203,11 +203,11 @@ export default function Video() {
   // ===== 게시글 삭제 =====
   async function handleDeletePost(postId) {
     if (!user) {
-      alert("로그인한 사용자만 삭제할 수 있어.");
+      alert("로그인한 사용자만 삭제할 수 있어");
       return;
     }
 
-    if (!window.confirm("이 사진을 삭제할까?")) return;
+    if (!window.confirm("이 사진 삭제할까?")) return;
 
     const { error } = await supabase
       .from("photo_posts")
@@ -216,7 +216,7 @@ export default function Video() {
 
     if (error) {
       console.error("delete post error:", error);
-      alert("삭제 중 오류가 발생했어.");
+      alert("삭제 중 오류가 발생했어");
       return;
     }
 
@@ -235,7 +235,7 @@ export default function Video() {
   // ===== 댓글 등록 =====
   async function handleAddComment(postId) {
     if (!user) {
-      alert("로그인한 사용자만 댓글을 달 수 있어.");
+      alert("로그인한 사용자만 댓글을 달 수 있어");
       return;
     }
 
@@ -251,7 +251,7 @@ export default function Video() {
 
     if (error) {
       console.error("insert comment error:", error);
-      alert("댓글 저장 중 오류가 발생했어.");
+      alert("댓글 저장 중 오류가 발생했어");
       return;
     }
 
@@ -269,11 +269,11 @@ export default function Video() {
    // ===== 댓글 삭제 =====
    async function handleDeleteComment(postId, commentId) {
     if (!user) {
-      alert("로그인한 사용자만 삭제할 수 있어.");
+      alert("로그인한 사용자만 삭제할 수 있어");
       return;
     }
 
-    if (!window.confirm("이 댓글을 삭제할까?")) return;
+    if (!window.confirm("이 댓글 삭제할까?")) return;
 
     const { error } = await supabase
       .from("photo_comments")
@@ -282,7 +282,7 @@ export default function Video() {
 
     if (error) {
       console.error("delete comment error:", error);
-      alert("댓글 삭제 중 오류가 발생했어.");
+      alert("댓글 삭제 중 오류가 발생했어");
       return;
     }
 

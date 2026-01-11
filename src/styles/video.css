@@ -157,7 +157,9 @@
   justify-content: space-between;
 }
 
-
+.photo-comments-header {
+  margin-bottom: 10px;
+}
 .photo-comments {
   /* padding: 10px; */
   /* border-radius: 10px; */
