@@ -65,10 +65,11 @@ table {
 
 
 button {
-	padding: 3px 4px;
-	border: 1px solid var(--main-color);
+	padding: 5px 9px;
+	border: 1px solid #ddd;
 	border-radius: 3px;
 	cursor: pointer;
+	background-color: #fff;
 }
 
 input:focus,

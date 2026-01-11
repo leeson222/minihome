@@ -36,6 +36,7 @@ input[type="file"] {
 .btn:active,
 .btn-primary:hover,
 .btn:hover {
+  border: 1px solid var(--main-color);
   color: #fff;
   background-color: var(--main-color);
 }
