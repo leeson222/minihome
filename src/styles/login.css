@@ -33,3 +33,11 @@
   margin-top: 5px;
   color: #f00;
 }
+
+.login-box form {
+  display: flex;
+  gap: 5px;
+}
+.login-box form button {
+  background-color: #fff;
+}
