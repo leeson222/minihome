@@ -419,7 +419,7 @@ export default function Video() {
 
                 {!post.photo_comments || post.photo_comments.length === 0 ? (
                   <p className="photo-comments-empty">
-                    아직 댓글이 없어. 첫 댓글을 남겨줘 💬
+                    아직 댓글이 없어 첫 댓글을 남겨줘 💬
                   </p>
                 ) : (
                   <ul className="photo-comments-list">
@@ -450,7 +450,7 @@ export default function Video() {
                   <input
                     type="text"
                     className="photo-comment-input"
-                    placeholder="댓글을 남겨봐 :)"
+                    placeholder="댓글을 남겨봐 ♡"
                     value={commentInputs[post.id] || ""}
                     onChange={(e) =>
                       handleCommentInputChange(post.id, e.target.value)
