@@ -3,6 +3,8 @@ import { supabase } from "../lib/supabase"; // 경로는 네 프로젝트에 맞
 
 import Button from '../components/ui/Button';
 
+
+
 function getAuthorName(email) {
   if (!email) return "Unknown";
 
