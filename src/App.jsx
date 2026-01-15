@@ -109,6 +109,17 @@ export default function App() {
     );
   }
 
+  const handleMenuChange = (menu) => {
+    const email = session?.user?.email;
+  
+    if (menu === 'diary' && email === 'guest@guest.local') {
+      alert('접근 권한이 없습니다.');
+      return;
+    }
+  
+    setActiveMenu(menu);
+  };
+
   // ✅ 로그인 했으면 기존 레이아웃 그대로
   const renderContent = () => {
     switch (activeMenu) {
@@ -137,7 +148,7 @@ export default function App() {
         <div className="mini-wrapper">
           <LeftColumn />
           <main className="center-column">{renderContent()}</main>
-          <RightMenu activeMenu={activeMenu} onChange={setActiveMenu} />
+          <RightMenu activeMenu={activeMenu} onChange={handleMenuChange} />
         </div>
       </div>
     );
