@@ -227,7 +227,7 @@ input[type="file"] {
 }
 
 .lover-name {
-  color: #333;
+  color: var(--main-color);
 }
 
 .lover-message {

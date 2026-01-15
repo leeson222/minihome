@@ -54,7 +54,7 @@ export default function WhatLoverSay() {
       <ul className="lover-list">
         {list.map((it) => (
           <li key={it.id}>
-            <span className="lover-relation">({it.relation})</span> {it.name} {it.message}
+            <span className="lover-relation">({it.relation})</span><span className='lover-name'>{it.name}</span> {it.message}
           </li>
         ))}
       </ul>
