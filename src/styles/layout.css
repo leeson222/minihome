@@ -227,6 +227,8 @@ input[type="file"] {
 }
 
 .lover-name {
+  display: inline-block;
+  margin-left: 5px;
   color: var(--main-color);
 }
 
