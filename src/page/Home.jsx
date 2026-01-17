@@ -12,7 +12,7 @@ function Home() {
         <div className="news-wrap">
           <ul className="news-column">
             <li><span className='icon'>기념일</span><span>26.01.18</span><span>리쿠 탄조비 ♡</span></li>
-            <li><span className='icon'>기념일</span><span>26.01.28</span><span>D-Day 100 ♡</span></li>
+            <li><span className='icon'>기념일</span><span>26.01.27</span><span>D-Day 100 ♡</span></li>
           </ul>
           <ul className="news-column">
             <li><span className='icon'>Day</span><span>26.01.14</span><span>리쿠 유우시 약속</span></li>
